@@ -172,6 +172,36 @@ canvas.addEventListener("click", function(mouse) {
             if (firstAttempt) {
                 firstAttempt = false;
 
+                for (let i = mouseRow-1; i <= mouseRow+1; i++) {
+                    for (let j = mouseColumn-1; j <= mouseColumn+1; j++) {
+                        if (i in grid && j in grid[i] && grid[i][j].containsMine) {
+                            grid[i][j].containsMine = false;
+
+                            let newX1 = random(0, mouseRow-2);
+                            let newX2 = random(mouseRow+2, grid.length-1);
+                            let newY1 = random(0, mouseColumn-2);
+                            let newY2 = random(mouseColumn+2, grid[0].length-1);
+
+                            let X1 = random(0, 1);
+                            let Y1 = random(0, 1);
+
+                            if (newX1 in grid && X1 == 1) {
+                                if (newY1 in grid[0] && Y1 == 1) {
+                                    grid[newX1][newY1].containsMine = true;
+                                } else {
+                                    grid[newX1][newY2].containsMine = true;
+                                }
+                            } else {
+                                if (newY1 in grid[0] && Y1 == 1) {
+                                    grid[newX2][newY1].containsMine = true;
+                                } else {
+                                    grid[newX2][newY2].containsMine = true;
+                                }
+                            }
+                        }
+                    }
+                }
+
                 checkMines();
             }
 
