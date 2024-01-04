@@ -178,11 +178,8 @@ canvas.addEventListener("click", function(mouse) {
                             let newY1 = random(0, mouseRow-2);
                             let newY2 = random(mouseRow+2, grid.length-1);
 
-                            let X1 = random(0, 1);
-                            let Y1 = random(0, 1);
-
-                            if (newY1 in grid && Y1 == 1) {
-                                if (newX1 in grid[0] && X1 == 1) {
+                            if (newY1 in grid) {
+                                if (newX1 in grid[0]) {
                                     if (grid[newY1][newX1].containsMine) {
                                         j--;
                                     }
@@ -196,7 +193,7 @@ canvas.addEventListener("click", function(mouse) {
                                     grid[newY1][newX2].containsMine = true;
                                 }
                             } else {
-                                if (newX1 in grid[0] && X1 == 1) {
+                                if (newX1 in grid[0]) {
                                     if (grid[newY2][newX1].containsMine) {
                                         j--;
                                     }
