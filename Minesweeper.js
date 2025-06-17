@@ -34,6 +34,8 @@ let lostGame = false;
 const init = () => {
     canvas.width = mineWidth*columns;
     canvas.height = mineHeight*rows;
+    canvas.style.width = `${canvas.width/16.67}vw`;
+    canvas.style.height = `${canvas.height/9.42}vh`;
     grid = [];
     numberOfMines = 0;
     highlightedGrid = "";
