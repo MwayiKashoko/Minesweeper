@@ -254,8 +254,9 @@ let mouseX = 0;
 let mouseY = 0;
 
 canvas.addEventListener("mousemove", function(mouse) {
-    mouseX = mouse.offsetX;
-    mouseY = mouse.offsetY;
+    let m = getMousePos(mouse);
+    mouseX = m.x;
+    mouseY = m.y;
 
     if (!lostGame) {
         let mouseRow = Math.floor(mouseY/mineHeight);
