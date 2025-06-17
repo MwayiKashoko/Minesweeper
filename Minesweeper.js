@@ -127,10 +127,20 @@ button.onclick = function() {
 
 init();
 
+const getMousePos = (evt) => {
+    const rect = canvas.getBoundingClientRect();
+
+    return {
+        x: (evt.clientX - rect.left) / (rect.right - rect.left) * canvas.width,
+        y: (evt.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height
+    };
+}
+
 canvas.addEventListener("click", function(mouse) {
     if (!lostGame) {
-        let mouseX = mouse.offsetX;
-        let mouseY = mouse.offsetY;
+        let m = getMousePos(mouse);
+		let mouseX = m.x;
+		let mouseY = m.y;
 
         let mouseRow = Math.floor(mouseY/mineHeight);
         let mouseColumn = Math.floor(mouseX/mineWidth);
@@ -239,6 +249,9 @@ canvas.addEventListener("click", function(mouse) {
         }
     }
 });
+
+let mouseX = 0;
+let mouseY = 0;
 
 canvas.addEventListener("mousemove", function(mouse) {
     mouseX = mouse.offsetX;
